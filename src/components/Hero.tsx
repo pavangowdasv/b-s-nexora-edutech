@@ -21,9 +21,9 @@ export default function Hero({ onContactClick, onExploreClick }: HeroProps) {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-primary/10 border border-primary/25 rounded-full text-primary font-bold text-xs tracking-wide"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-teal-50 border border-teal-200/60 rounded-full text-teal-800 font-bold text-xs tracking-wide shadow-sm"
           >
-            <Sparkles className="w-3.5 h-3.5 text-secondary animate-pulse" />
+            <Award className="w-3.5 h-3.5 text-teal-600 animate-pulse" />
             <span>Govt. Recognized Certification Hub</span>
           </motion.div>
 
@@ -124,7 +124,7 @@ export default function Hero({ onContactClick, onExploreClick }: HeroProps) {
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-primary to-secondary opacity-25 blur-sm group-hover:opacity-45 transition-opacity" />
             
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCieIBl2qxYCDqm64GDtzdYeRstW-usO3Uha2GCpfMc3an1-ihb9yw5bF28vhphwHhMl0EH2gtOz_W7ZHX7igA56Qc1c6alXmsmFog5oRfYFjmC6yLwa1zJAVkfF8ZlLbXDMfoQH35x-p5wvNA7sexoOhmftfd8Mj7jIdplOV3sYo-yvbGMoogH9o2aIp7k0fpSQ9PKuBGzY7oC6M7MRWdWraAtptbHzbgj4KyA5eaFEDA6q1XR8pzbsmyrwIBTl6mA8TR19mIXxC0K"
+              src="/hero-image-realistic.png"
               alt="Interactive Learning Experience"
               className="relative z-10 w-full h-auto rounded-xl shadow-2xl scale-100 hover:scale-[1.01] transition-transform duration-500"
               referrerPolicy="no-referrer"

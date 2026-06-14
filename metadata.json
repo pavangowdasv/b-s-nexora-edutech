@@ -1,0 +1,8 @@
+{
+  "name": "B's Nexora Edutech",
+  "description": "An online educational and certification platform that helps students and professionals develop practical technical skills through industry-relevant training programs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

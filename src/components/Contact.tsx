@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, Search, ChevronDown, X, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, Search, ChevronDown, X, Loader2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { submitApplicant } from '../lib/supabase';
 
 const INDIAN_STATES_AND_UTS = [
   'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana',
@@ -21,6 +22,7 @@ export default function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Searchable Dropdown state
   const [stateSearch, setStateSearch] = useState('');
@@ -96,22 +98,30 @@ export default function Contact() {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-      setForm({
-        fullName: '',
-        mobileNumber: '',
-        gmailAddress: '',
-        state: ''
+    setSubmitError(null);
+
+    try {
+      await submitApplicant({
+        full_name: form.fullName.trim(),
+        mobile_number: form.mobileNumber.trim(),
+        gmail_address: form.gmailAddress.trim(),
+        state: form.state,
       });
+      setSubmitted(true);
+      setForm({ fullName: '', mobileNumber: '', gmailAddress: '', state: '' });
       setStateSearch('');
-    }, 1200);
+    } catch (err: any) {
+      setSubmitError(
+        err?.message || 'Something went wrong. Please try again or contact us directly.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const filteredStates = INDIAN_STATES_AND_UTS.filter(item => 
@@ -288,6 +298,14 @@ export default function Contact() {
                       </p>
                     )}
                   </div>
+
+                  {/* Supabase Submit Error Banner */}
+                  {submitError && (
+                    <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-xs font-medium">
+                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                      <span>{submitError}</span>
+                    </div>
+                  )}
 
                   {/* Submit Inquiry Button */}
                   <div className="pt-2">

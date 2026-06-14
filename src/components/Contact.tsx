@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2, Search, ChevronDown, X, Loader2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { submitApplicant } from '../lib/supabase';
+import { submitApplicant } from '../lib/firebase';
 
 const INDIAN_STATES_AND_UTS = [
   'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana',

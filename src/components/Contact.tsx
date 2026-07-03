@@ -299,7 +299,7 @@ export default function Contact() {
                     )}
                   </div>
 
-                  {/* Supabase Submit Error Banner */}
+                  {/* Submit Error Banner */}
                   {submitError && (
                     <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-xs font-medium">
                       <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
